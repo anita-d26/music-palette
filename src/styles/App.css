@@ -1,0 +1,26 @@
+/* App.css */
+
+.App {
+  text-align: center;
+  padding: 2rem;
+  font-family: sans-serif;
+}
+
+.navbar {
+  background: #b27092;
+  padding: 1rem;
+  color: white;
+}
+
+.song-search input {
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.song-search button {
+  padding: 0.5rem;
+  background: #87baab;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
