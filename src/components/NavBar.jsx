@@ -1,10 +1,11 @@
-// components/Navbar.js
+// Navbar.js - navigation ui
+
 import React from 'react';
 
 function Navbar() {
   return (
     <nav className="navbar">
-      <h3>🎨 Chromatone</h3>
+      <h3>Chromatone</h3>
     </nav>
   );
 }

@@ -1,0 +1,27 @@
+{
+    "name": "chromatone",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "bootstrap": "^5.0.0",
+    "p5": "^1.4.0",
+    "chroma-js": "^2.1.0",
+    "tone": "^14.7.77",
+    "spotify-web-api-js": "^1.5.1"
+    },
+    "devDependencies": {
+        "vite": "^4.0.0",
+        "@vitejs/plugin-react": "^3.0.0"
+    },
+    "keywords": [],
+        "author": "Anita Daniel",
+        "license": "MIT"
+}

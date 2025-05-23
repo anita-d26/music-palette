@@ -1,25 +1,45 @@
-// SongSearch.js
+// SongSearch.js - search bar  
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 function SongSearch({ onSongSelect }) {
-  const [input, setInput] = useState('');
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState([]);
 
-  const handleSubmit = (e) => {
+  const searchSong = async (e) => {
     e.preventDefault();
-    onSongSelect(input);
+
+    const token = 'YOUR_SPOTIFY_ACCESS_TOKEN'; // Replace
+    const res = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=track`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const data = await res.json();
+    setResults(data.tracks.items);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="song-search">
-      <input
-        type="text"
-        placeholder="Type a song name..."
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
-      <button type="submit">Generate Palette</button>
-    </form>
+    <div>
+      <form onSubmit={searchSong} className="song-search">
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search for a song..."
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      <ul>
+        {results.map((song) => (
+          <li key={song.id} onClick={() => onSongSelect(song.name)}>
+            {song.name} - {song.artists[0].name}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
