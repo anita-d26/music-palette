@@ -9,17 +9,20 @@ function Home() {
   const [selectedSong, setSelectedSong] = useState(null);
 
   return (
-    <div>
-      <h1>Chromatone</h1>
-
-      <SongSearch onSongSelect={setSelectedSong} />
+    <div className="home">
+      {!selectedSong && (
+        <div className="search-container">
+          <h1 className="rainbow-wordmark">Chromatone</h1>
+          <SongSearch onSongSelect={setSelectedSong} />
+        </div>
+      )}
 
       {selectedSong && (
-        <>
+        <div className="container">
           <h2>Now Visualizing: {selectedSong.name} by {selectedSong.artist}</h2>
           <Visualizer song={selectedSong} />
           <ColorPalette song={selectedSong} />
-        </>
+        </div>
       )}
     </div>
   );

@@ -1,16 +1,21 @@
 /* index.css */
 
+/* ========== Global Styles ========== */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f0fb;
-  color: #3c1361;
+  background-color: #121212;
+  color: #FFFFFF;
   line-height: 1.6;
   min-height: 100vh;
+  margin: 0;
 }
 
-/* Global link styles */
+h1, h2 {
+  color: #FFFFFF;
+}
+
 a {
-  color: #6f42c1;
+  color: #1DB954;
   text-decoration: none;
 }
 
@@ -18,22 +23,93 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Utility classes */
+/* ========== Layout ========== */
 .container {
   max-width: 1280px;
   margin: 0 auto;
   padding: 1rem 2rem;
 }
 
-/* Form elements base */
-select, button, input {
-  font-family: inherit;
-  font-size: 1rem;
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  flex-direction: column;
+  text-align: center;
 }
 
-/* Buttons */
-.btn-purple {
-  background-color: #6f42c1;
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* ========== Navbar ========== */
+.navbar {
+  background-color: gray;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.5);
+}
+
+.navbar-logo {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.profile-pic {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+/* ========== Rainbow Logo / Wordmark ========== */
+.rainbow-wordmark {
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(90deg, 
+    #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8B00FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  user-select: none;
+  margin-bottom: 1rem;
+}
+
+/* Animation */
+@keyframes rainbowShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* ========== Forms & Inputs ========== */
+input, select, button {
+  font-family: inherit;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: none;
+  padding: 0.5rem 0.75rem;
+}
+
+input:focus, select:focus {
+  outline: 2px solid #1DB954;
+  outline-offset: 2px;
+}
+
+/* ========== Buttons ========== */
+.btn-green {
+  background-color: #1DB954;
   border: none;
   color: white;
   padding: 0.6rem 1.2rem;
@@ -41,6 +117,7 @@ select, button, input {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.btn-purple:hover {
-  background-color: #5936a1;
+
+.btn-green:hover {
+  background-color: #14833b;
 }
