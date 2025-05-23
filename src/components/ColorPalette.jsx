@@ -1,26 +1,17 @@
-// ColorPalette.jsx - displays palette
+// ColorPalette.jsx - mockPalettes for now
 
-import React from 'react';
-import '../styles/Palette.css';
+const moodPalettes = {
+  chill: ['#87baab', '#ffe9f3', '#f4bfdb'],
+  energetic: ['#b27092', '#512d38', '#f4bfdb']
+};
 
-function ColorPalette({ colors = ['#87baab', '#ffe9f3', '#f4bfdb'] }) {
+function ColorPalette({ mood }) {
+  const palette = moodPalettes[mood] || [];
+
   return (
-    <div className="color-palette justify-content-center gap-3 mt-4">
-      {colors.map((color, idx) => (
-        <div
-          key={idx}
-          className="swatch"
-          style={{
-            backgroundColor: color,
-            width: '80px',
-            height: '80px',
-            borderRadius: '10px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#fff',
-          }}
-        >
+    <div className="color-palette">
+      {palette.map((color, i) => (
+        <div key={i} className="swatch" style={{ backgroundColor: color }}>
           {color}
         </div>
       ))}
