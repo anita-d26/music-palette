@@ -1,7 +1,7 @@
-// spotify.js - api
+// spotify.js - api frontend
 
 export async function fetchAccessToken(code) {
-  const response = await fetch('/api/exchange-token', {
+  const response = await fetch('http://localhost:5173//api/getSpotifyToken', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ code }),
