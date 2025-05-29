@@ -38,7 +38,7 @@ const Profile = () => {
 
   return (
     <div className="container mt-5">
-      <h2 className="text-center mb-4">🎵 Your Saved Palettes</h2>
+      <h2 className="text-center mb-4">Your Saved Palettes</h2>
 
       {savedPalettes.length === 0 ? (
         <p className="text-center">No palettes saved yet. Try creating one!</p>

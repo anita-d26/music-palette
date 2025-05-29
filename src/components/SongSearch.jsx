@@ -1,46 +1,79 @@
-// SongSearch.js - search bar  
+// SongSearch.jsx - search bar  
 
-import { useState } from 'react';
+import { useState } from "react";
 
-function SongSearch({ onSongSelect }) {
-  const [query, setQuery] = useState('');
+async function fetchSpotifyToken() {
+const response = await fetch('https://chromatone-9d172.cloudfunctions.net/getSpotifyToken');
+  if (!response.ok) throw new Error('Failed to get token');
+  const data = await response.json();
+  return data.access_token;
+}
+
+async function searchTracks(query) {
+  const token = await fetchSpotifyToken();
+
+  const response = await fetch(
+    `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=track&limit=10`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch tracks from Spotify');
+  }
+
+  const data = await response.json();
+  return data.tracks.items;
+}
+
+export default function SpotifySearch({ onTrackSelect }) {
+  const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
 
-  const searchSong = async (e) => {
-    e.preventDefault();
-
-    const token = 'YOUR_SPOTIFY_ACCESS_TOKEN'; // Replace
-    const res = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=track`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-
-    const data = await res.json();
-    setResults(data.tracks.items);
+  const handleSearch = async () => {
+    try {
+      const tracks = await searchTracks(query);
+      setResults(tracks);
+    } catch (error) {
+      console.error(error);
+      setResults([]);
+    }
   };
 
   return (
-    <div>
-      <form onSubmit={searchSong} className="song-search">
+    <div className="p-4">
+      <div className="flex gap-2 mb-4">
         <input
           type="text"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
           placeholder="Search for a song..."
+          onChange={(e) => setQuery(e.target.value)}
+          className="border p-2 rounded w-full"
         />
-        <button type="submit">Search</button>
-      </form>
-
-      <ul>
-        {results.map((song) => (
-          <li key={song.id} onClick={() => onSongSelect(song.name)}>
-            {song.name} - {song.artists[0].name}
-          </li>
+        <button onClick={handleSearch} className="bg-purple-600 text-white px-4 py-2 rounded">
+          Search
+        </button>
+      </div>
+      <div className="grid gap-4">
+        {results.map((track) => (
+          <div key={track.id} className="flex items-center gap-4 bg-white shadow p-3 rounded hover:bg-gray-50">
+            <img src={track.album.images[0]?.url} alt={track.name} className="w-16 h-16 rounded" />
+            <div>
+              <p className="font-semibold">{track.name}</p>
+              <p className="text-sm text-gray-500">{track.artists.map((a) => a.name).join(", ")}</p>
+              <button
+                onClick={() => onTrackSelect(track)}
+                className="text-sm text-purple-600 underline mt-1"
+              >
+                Select this track
+              </button>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
-
-export default SongSearch;
