@@ -5,20 +5,13 @@ Enter a song title and generate a color palette and abstract waveform that match
 
 ## Features
 - Input a song name
-- Generate a matching color palette
+- Generates a waveform with color palette for the track
 - Dynamic state using React Hooks
 - Styled with Bootstrap + CSS
 
-## Tech Stack
+## Tech
 - React
 - React Hooks (`useState`, `useEffect`)
 - Spotify API
 - Web Audio API + Canvas
-- Deployed via Firebase Hosting
-
-## Getting Started
-```bash
-git clone https://github.com/anita-d26/music-palette
-cd music-palette
-npm install
-npm start
+- Deployed via Vercel

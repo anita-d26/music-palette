@@ -1,4 +1,4 @@
-// Profile.jsx - mock profile for user to see saved tracks, visualizations, and colors
+// ProfilePage.jsx - mock profile for user to see saved tracks, visualizations, and colors
 
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -28,7 +28,7 @@ const Profile = () => {
   const [savedPalettes, setSavedPalettes] = useState([]);
 
   useEffect(() => {
-    // Replace Firebase once working
+    // replace when api is working
     setSavedPalettes(mockSaved);
   }, []);
 

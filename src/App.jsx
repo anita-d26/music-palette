@@ -2,9 +2,9 @@
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar.jsx';
-import Home from './pages/Home';
-import Profile from './pages/Profile';
-import Visualize from './pages/Visualize';
+import Home from './pages/HomePage';
+import Profile from './pages/ProfilePage';
+import Visualize from './pages/VisualizePage';
 import './styles/App.css';
 
 function App() {
